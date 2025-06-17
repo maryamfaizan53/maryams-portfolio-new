@@ -19,6 +19,7 @@ const SkillsSection = () => {
       title: 'Backend Development',
       icon: <Zap className="w-6 h-6" />,
       skills: [
+       
         { name: 'Python', level: 90 },
         { name: 'FastAPI', level: 85 },
         { name: 'Node.js', level: 80 },
@@ -34,7 +35,10 @@ const SkillsSection = () => {
         { name: 'TensorFlow', level: 75 },
         { name: 'PyTorch', level: 70 },
         { name: 'NLP', level: 80 },
-        { name: 'Computer Vision', level: 72 }
+        { name: 'Computer Vision', level: 72 },
+        { name: 'Agentic AI', level: 90 },
+        { name: 'Machine Learning', level: 80 },
+        { name: 'Cloud computing', level: 70 },
       ]
     }
   ];

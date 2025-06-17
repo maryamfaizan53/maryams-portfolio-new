@@ -6,10 +6,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, href: '#', label: 'GitHub' },
-    { icon: <Linkedin className="w-5 h-5" />, href: '#', label: 'LinkedIn' },
-    { icon: <Twitter className="w-5 h-5" />, href: '#', label: 'Twitter' },
-    { icon: <Mail className="w-5 h-5" />, href: '#', label: 'Email' }
+    { icon: <Github className="w-5 h-5" />, href: 'https://github.com/maryamfaizan53', label: 'GitHub' },
+    { icon: <Linkedin className="w-5 h-5" />, href: 'https://linkedin.com/in/maryam-faizan-b86965323', label: 'LinkedIn' },
+    { icon: <Twitter className="w-5 h-5" />, href: 'https://x.com/maryammm556', label: 'Twitter' },
+    { icon: <Mail className="w-5 h-5" />, href:'mailto:maryamfaizanmianoor@gmail.com', label: 'Email' }
   ];
 
   const quickLinks = [

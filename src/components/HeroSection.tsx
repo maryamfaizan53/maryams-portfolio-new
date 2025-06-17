@@ -78,7 +78,7 @@ const HeroSection = () => {
               {/* Inner container */}
               <div className="absolute inset-4 rounded-full bg-slate-900 flex items-center justify-center shadow-2xl shadow-magical-purple/50">
                 <div className="w-52 h-52 rounded-full bg-gradient-to-br from-magical-purple/40 via-magical-blue/30 to-magical-cyan/40 flex items-center justify-center relative overflow-hidden backdrop-blur-sm">
-                  <span className="text-8xl font-orbitron font-bold text-gradient text-shadow-glow hover-lift">MF</span>
+                  <span className="text-4xl font-orbitron font-bold text-gradient text-shadow-glow hover-lift">AI Agents Creater</span>
                   
                   {/* Inner animated overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-magical-purple/20 to-magical-cyan/20 rounded-full animate-pulse opacity-50"></div>
@@ -130,7 +130,7 @@ const HeroSection = () => {
                 <div className="space-y-6">
                   <div className="relative">
                     <h2 className="text-4xl md:text-5xl font-medium text-slate-200 text-shadow-glow hover-text-glow transition-all duration-500">
-                      AI Developer & Full Stack Web Developer
+                      AI Agents & Full Stack Developer
                     </h2>
                     <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-magical-cyan animate-pulse opacity-80"></div>
                   </div>
@@ -144,9 +144,10 @@ const HeroSection = () => {
 
               {/* Enhanced Tech stack with better visual hierarchy */}
               <div className="space-y-6">
-                <h3 className="text-xl text-magical-cyan font-semibold mb-8 hover-text-glow">Powered by Modern Technology</h3>
+                <h3 className="text-xl text-magical-cyan font-semibold mb-8 hover-text-glow">Its time to create Modern Technologies into life</h3>
                 <div className="flex flex-wrap justify-center gap-6">
                   {[
+                    { name: 'Agentic AI', color: 'from-orange-600 to-slate-ogange', icon: '⚡' },
                     { name: 'Next.js', color: 'from-slate-600 to-slate-800', icon: '⚡' },
                     { name: 'React', color: 'from-blue-600 to-blue-800', icon: '⚛️' },
                     { name: 'Python', color: 'from-yellow-600 to-yellow-800', icon: '🐍' },

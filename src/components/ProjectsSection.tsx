@@ -12,41 +12,61 @@ const ProjectsSection = () => {
       id: 1,
       title: 'AI-Powered Chatbot Platform',
       description: 'Intelligent conversational AI system built with OpenAI API, featuring natural language processing and context-aware responses.',
-      image: '/placeholder.svg',
+      image: '/bg2.jpg',
       category: 'AI/ML',
       tech: ['Python', 'FastAPI', 'OpenAI', 'React', 'PostgreSQL'],
-      liveUrl: '#',
-      githubUrl: '#'
+      liveUrl: '/bg2.jpg',
+      githubUrl: 'https://github.com/maryamfaizan53/chatbot-chainlit'
     },
     {
       id: 2,
       title: 'E-commerce Dashboard',
       description: 'Modern admin dashboard for e-commerce management with real-time analytics, inventory tracking, and payment integration.',
-      image: '/placeholder.svg',
+      image: '/public/admin.png',
       category: 'Full Stack',
       tech: ['Next.js', 'TypeScript', 'Stripe', 'Prisma', 'TailwindCSS'],
-      liveUrl: '#',
-      githubUrl: '#'
+      liveUrl: 'https://vercel.com/maryams-projects-5804c59d/real-time-dashboard-with-mongodb-maryam',
+      githubUrl: 'https://github.com/maryamfaizan53/real-time-dashboard-with-mongodb'
     },
     {
       id: 3,
-      title: 'Smart Home IoT Controller',
-      description: 'Mobile-responsive web app for controlling IoT devices with real-time monitoring and automated scheduling.',
-      image: '/placeholder.svg',
+      title: 'Smart calorie counter ',
+      description: 'Mobile-responsive web app for calorie count in desi and delisious food with diet recipies.',
+      image: '/desi.png',
       category: 'IoT',
       tech: ['React', 'Node.js', 'MongoDB', 'WebSocket', 'Arduino'],
-      liveUrl: '#',
-      githubUrl: '#'
+      liveUrl: 'https://vercel.com/maryams-projects-5804c59d/bhook-khana-tracker',
+      githubUrl: 'https://github.com/maryamfaizan53/bhook-khana-tracker'
     },
     {
       id: 4,
       title: 'Machine Learning Model Predictor',
       description: 'Web application for training and deploying ML models with interactive data visualization and model comparison.',
-      image: '/placeholder.svg',
-      category: 'AI/ML',
+      image: '/image20.jpg',
+      category: 'UI/UX, Figma',
+      tech: ['Python', 'figma', 'Flask', 'next.js', 'sanity'],
+      liveUrl: 'https://main-hackathon-proj-final-updates-latest-v5-with-clerk.vercel.app/',
+      githubUrl: 'https://github.com/maryamfaizan53/main-hackathon-proj-final-updates-latest-v5'
+    },
+       {
+      id: 5,
+      title: 'Haveli food restaurant UI',
+      description: 'A well known food chain in Pakistan serves desi and continental food.',
+      image: '/haveli.png',
+      category: 'UI/UX, Front-end',
       tech: ['Python', 'TensorFlow', 'Flask', 'D3.js', 'Pandas'],
       liveUrl: '#',
       githubUrl: '#'
+    },
+       {
+      id: 6,
+      title: 'Portfolio website',
+      description: 'A personal fortfoilio website using nextjs.',
+      image: '/portfolio.png',
+      category: 'AI/ML',
+      tech: ['Python', 'TensorFlow', 'Flask', 'D3.js', 'Pandas'],
+      liveUrl: 'https://portfolio-nextjs-tailwind-flax.vercel.app/',
+      githubUrl: 'https://github.com/maryamfaizan53/portfolio-nextjs-tailwind-'
     }
   ];
 
