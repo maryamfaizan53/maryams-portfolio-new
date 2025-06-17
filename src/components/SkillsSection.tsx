@@ -70,10 +70,10 @@ const SkillsSection = () => {
                     </div>
                     <div className="w-full bg-slate-700/50 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-magical-purple to-magical-cyan h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="bg-gradient-to-r from-magical-purple to-magical-cyan h-2 rounded-full transition-all duration-1000 ease-out animate-pulse"
                         style={{
                           width: `${skill.level}%`,
-                          animation: `skillBar 2s ease-out ${skillIndex * 0.1}s both`
+                          animationDelay: `${skillIndex * 0.1}s`
                         }}
                       ></div>
                     </div>
@@ -104,17 +104,6 @@ const SkillsSection = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes skillBar {
-          from {
-            width: 0%;
-          }
-          to {
-            width: var(--skill-width);
-          }
-        }
-      `}</style>
     </section>
   );
 };
