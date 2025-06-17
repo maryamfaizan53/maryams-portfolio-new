@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				magical: {
+					purple: '#8B5CF6',
+					blue: '#3B82F6',
+					cyan: '#06B6D4',
+					pink: '#EC4899',
+					violet: '#7C3AED',
+					indigo: '#6366F1'
 				}
 			},
 			borderRadius: {
@@ -84,11 +93,62 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-20px)'
+					}
+				},
+				'glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px rgba(139, 92, 246, 0.5)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px rgba(139, 92, 246, 0.8)'
+					}
+				},
+				'sparkle': {
+					'0%, 100%': {
+						opacity: '0',
+						transform: 'scale(0)'
+					},
+					'50%': {
+						opacity: '1',
+						transform: 'scale(1)'
+					}
+				},
+				'particle-float': {
+					'0%': {
+						transform: 'translateY(100vh) translateX(-10px)'
+					},
+					'100%': {
+						transform: 'translateY(-100px) translateX(10px)'
+					}
+				},
+				'gradient-shift': {
+					'0%, 100%': {
+						backgroundPosition: '0% 50%'
+					},
+					'50%': {
+						backgroundPosition: '100% 50%'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'glow': 'glow 2s ease-in-out infinite',
+				'sparkle': 'sparkle 1.5s ease-in-out infinite',
+				'particle-float': 'particle-float 15s linear infinite',
+				'gradient-shift': 'gradient-shift 3s ease infinite'
+			},
+			backgroundImage: {
+				'magical-gradient': 'linear-gradient(45deg, #8B5CF6, #3B82F6, #06B6D4, #EC4899)',
+				'dark-magical': 'linear-gradient(135deg, #0F0F23 0%, #1a1a3a 50%, #2d1b69 100%)'
 			}
 		}
 	},
