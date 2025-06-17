@@ -193,6 +193,90 @@
     opacity: 1;
   }
 
+  /* Enhanced hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:-translate-y-2;
+  }
+
+  .hover-glow-intense {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow-intense:hover {
+    box-shadow: 
+      0 0 40px rgba(139, 92, 246, 0.6),
+      0 0 80px rgba(59, 130, 246, 0.4),
+      0 0 120px rgba(6, 182, 212, 0.3);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .hover-rotate {
+    @apply transition-transform duration-500 hover:rotate-3;
+  }
+
+  .hover-bounce {
+    @apply transition-transform duration-300 hover:animate-bounce;
+  }
+
+  .hover-pulse-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-pulse-glow:hover {
+    animation: pulse-glow 1.5s ease-in-out infinite;
+    transform: scale(1.05);
+  }
+
+  .hover-shake {
+    @apply transition-transform duration-300;
+  }
+
+  .hover-shake:hover {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .hover-gradient-shift {
+    @apply bg-gradient-to-r from-magical-purple to-magical-blue bg-size-200 bg-pos-0 transition-all duration-500;
+  }
+
+  .hover-gradient-shift:hover {
+    @apply bg-pos-100;
+  }
+
+  .hover-border-glow {
+    @apply relative border border-transparent transition-all duration-300;
+  }
+
+  .hover-border-glow::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(135deg, #8B5CF6, #3B82F6, #06B6D4, #EC4899);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .hover-border-glow:hover::before {
+    opacity: 1;
+    animation: border-dance 2s linear infinite;
+  }
+
+  .hover-text-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-text-glow:hover {
+    text-shadow: 
+      0 0 10px rgba(139, 92, 246, 0.8),
+      0 0 20px rgba(59, 130, 246, 0.6),
+      0 0 30px rgba(6, 182, 212, 0.4);
+  }
+
   /* Enhanced scrollbar styling */
   ::-webkit-scrollbar {
     width: 10px;
@@ -278,6 +362,12 @@
   }
 }
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px) rotate(-1deg); }
+  75% { transform: translateX(5px) rotate(1deg); }
+}
+
 /* Professional utility classes */
 .text-shadow-glow {
   text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
@@ -297,6 +387,18 @@
 
 .backdrop-blur-magical {
   backdrop-filter: blur(20px) saturate(180%);
+}
+
+.bg-size-200 {
+  background-size: 200% 200%;
+}
+
+.bg-pos-0 {
+  background-position: 0% 50%;
+}
+
+.bg-pos-100 {
+  background-position: 100% 50%;
 }
 
 /* Responsive enhancements */

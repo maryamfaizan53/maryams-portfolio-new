@@ -47,17 +47,17 @@ const ExperienceSection = () => {
     <section id="experience" className="section-padding bg-slate-900/20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-gradient mb-6">
+          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-gradient mb-6 hover-text-glow hover-lift">
             Experience Journey
           </h2>
-          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-400 max-w-3xl mx-auto hover:text-slate-300 transition-colors duration-300">
             A timeline of my professional growth and the magical projects I've been part of
           </p>
         </div>
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-magical-purple via-magical-blue to-magical-cyan"></div>
+          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-magical-purple via-magical-blue to-magical-cyan hover-glow-intense"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -65,30 +65,39 @@ const ExperienceSection = () => {
                 key={index}
                 className={`relative flex ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } items-center`}
+                } items-center hover-lift`}
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-gradient-to-r from-magical-purple to-magical-cyan rounded-full border-4 border-slate-900 z-10"></div>
+                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-gradient-to-r from-magical-purple to-magical-cyan rounded-full border-4 border-slate-900 z-10 hover-pulse-glow hover:scale-125 transition-transform duration-300"></div>
 
                 {/* Content */}
                 <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'} ml-12 md:ml-0`}>
-                  <Card className="card-magical">
+                  <Card className="card-magical hover-glow-intense hover-lift">
                     <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-magical-purple/20 rounded-lg text-magical-purple">
+                      <div className="p-3 bg-magical-purple/20 rounded-lg text-magical-purple hover-pulse-glow hover-rotate hover:text-magical-cyan transition-colors duration-300">
                         {exp.icon}
                       </div>
                       <div className="flex-1">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                          <h3 className="text-xl font-semibold text-white">{exp.title}</h3>
-                          <span className="text-magical-cyan text-sm font-medium">{exp.period}</span>
+                          <h3 className="text-xl font-semibold text-white hover:text-magical-cyan transition-colors duration-300 hover-text-glow hover-lift">
+                            {exp.title}
+                          </h3>
+                          <span className="text-magical-cyan text-sm font-medium hover:text-magical-pink transition-colors duration-300 hover-pulse-glow">
+                            {exp.period}
+                          </span>
                         </div>
-                        <h4 className="text-magical-purple font-medium mb-3">{exp.company}</h4>
-                        <p className="text-slate-400 mb-4">{exp.description}</p>
+                        <h4 className="text-magical-purple font-medium mb-3 hover:text-magical-cyan transition-colors duration-300 hover-text-glow">
+                          {exp.company}
+                        </h4>
+                        <p className="text-slate-400 mb-4 hover:text-slate-300 transition-colors duration-300">
+                          {exp.description}
+                        </p>
                         
                         <ul className="space-y-2">
                           {exp.achievements.map((achievement, achIndex) => (
-                            <li key={achIndex} className="flex items-start space-x-2 text-sm text-slate-300">
-                              <Sparkles className="w-4 h-4 text-magical-cyan mt-0.5 flex-shrink-0" />
+                            <li key={achIndex} className="flex items-start space-x-2 text-sm text-slate-300 hover:text-white transition-colors duration-300 hover-lift">
+                              <Sparkles className="w-4 h-4 text-magical-cyan mt-0.5 flex-shrink-0 hover-bounce hover-rotate hover:text-magical-pink transition-colors duration-300" />
                               <span>{achievement}</span>
                             </li>
                           ))}
