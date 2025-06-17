@@ -22,7 +22,7 @@ const ProjectsSection = () => {
       id: 2,
       title: 'E-commerce Dashboard',
       description: 'Modern admin dashboard for e-commerce management with real-time analytics, inventory tracking, and payment integration.',
-      image: '/public/admin.png',
+      image: '/admin.png',
       category: 'Full Stack',
       tech: ['Next.js', 'TypeScript', 'Stripe', 'Prisma', 'TailwindCSS'],
       liveUrl: 'https://vercel.com/maryams-projects-5804c59d/real-time-dashboard-with-mongodb-maryam',
@@ -112,8 +112,18 @@ const ProjectsSection = () => {
             <Card key={project.id} className="card-magical group overflow-hidden hover-glow-intense hover-lift">
               <div className="relative">
                 {/* Project Image */}
-                <div className="aspect-video bg-gradient-to-br from-magical-purple/20 to-magical-blue/20 rounded-lg mb-4 flex items-center justify-center overflow-hidden hover-border-glow">
-                  <div className="w-full h-full bg-slate-800/50 flex items-center justify-center hover:bg-slate-700/50 transition-colors duration-300">
+                <div className="aspect-video bg-gradient-to-br from-magical-purple/20 to-magical-blue/20 rounded-lg mb-4 overflow-hidden hover-border-glow">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      target.nextElementSibling?.classList.remove('hidden');
+                    }}
+                  />
+                  <div className="hidden w-full h-full bg-slate-800/50 flex items-center justify-center">
                     <Sparkles className="w-12 h-12 text-magical-purple animate-pulse hover-bounce hover-rotate group-hover:text-magical-cyan transition-colors duration-300" />
                   </div>
                 </div>
@@ -151,6 +161,7 @@ const ProjectsSection = () => {
                   <Button
                     size="sm"
                     className="flex-1 bg-gradient-to-r from-magical-purple to-magical-blue hover-lift hover-glow-intense hover-pulse-glow transition-all duration-300"
+                    onClick={() => window.open(project.liveUrl, '_blank')}
                   >
                     <ExternalLink className="w-4 h-4 mr-2 hover-bounce" />
                     Live Demo
@@ -159,6 +170,7 @@ const ProjectsSection = () => {
                     size="sm"
                     variant="outline"
                     className="border-magical-cyan/50 text-magical-cyan hover:bg-magical-cyan/10 hover-border-glow hover-lift hover-pulse-glow"
+                    onClick={() => window.open(project.githubUrl, '_blank')}
                   >
                     <Github className="w-4 h-4 mr-2 hover-rotate" />
                     Code
