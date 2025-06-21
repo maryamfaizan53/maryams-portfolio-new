@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { MessageCircle, X, Send, User, Bot } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -7,7 +7,7 @@ import { sendMessageToGemini, ChatMessage } from '../services/chatService';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
     {
       id: '1',
       text: "Hi! I'm Maryam's AI assistant. I can tell you about her skills, experience, and services. How can I help you today?",
@@ -19,15 +19,17 @@ const Chatbot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  }, []);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    if (isOpen) {
+      scrollToBottom();
+    }
+  }, [messages, isOpen, scrollToBottom]);
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = useCallback(async () => {
     if (!inputMessage.trim() || isLoading) return;
 
     const userMessage: ChatMessage = {
@@ -38,11 +40,12 @@ const Chatbot = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = inputMessage;
     setInputMessage('');
     setIsLoading(true);
 
     try {
-      const response = await sendMessageToGemini(inputMessage);
+      const response = await sendMessageToGemini(currentInput);
       const botMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         text: response,
@@ -52,23 +55,47 @@ const Chatbot = () => {
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
+      const errorMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        text: "I'm experiencing technical difficulties. Please use the contact form to reach Maryam directly.",
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [inputMessage, isLoading]);
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
-  };
+  }, [handleSendMessage]);
+
+  const toggleOpen = useCallback(() => {
+    setIsOpen(prev => !prev);
+  }, []);
+
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputMessage(e.target.value);
+  }, []);
+
+  const loadingDots = useMemo(() => (
+    <div className="flex space-x-1">
+      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+    </div>
+  ), []);
 
   if (!isOpen) {
     return (
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={toggleOpen}
         className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-magical-purple to-magical-blue rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-50 hover:scale-110"
+        aria-label="Open chat"
       >
         <MessageCircle className="w-6 h-6 text-white" />
       </button>
@@ -90,8 +117,9 @@ const Chatbot = () => {
             </div>
           </div>
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={toggleOpen}
             className="text-slate-400 hover:text-white transition-colors"
+            aria-label="Close chat"
           >
             <X className="w-5 h-5" />
           </button>
@@ -133,11 +161,7 @@ const Chatbot = () => {
                   <Bot className="w-3 h-3 text-white" />
                 </div>
                 <div className="bg-slate-800 px-3 py-2 rounded-lg">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                  </div>
+                  {loadingDots}
                 </div>
               </div>
             </div>
@@ -150,7 +174,7 @@ const Chatbot = () => {
           <div className="flex space-x-2">
             <Input
               value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
+              onChange={handleInputChange}
               onKeyPress={handleKeyPress}
               placeholder="Ask about Maryam's services..."
               className="flex-1 bg-slate-800 border-slate-600 text-white placeholder-slate-400"
@@ -160,6 +184,7 @@ const Chatbot = () => {
               onClick={handleSendMessage}
               disabled={!inputMessage.trim() || isLoading}
               className="px-3 py-2 bg-gradient-to-r from-magical-purple to-magical-blue text-white rounded-md hover:opacity-90 transition-opacity disabled:opacity-50"
+              aria-label="Send message"
             >
               <Send className="w-4 h-4" />
             </button>

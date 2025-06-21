@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Sparkles } from 'lucide-react';
 
 interface LazyImageProps {
@@ -21,40 +21,49 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const [isInView, setIsInView] = useState(false);
   const [hasError, setHasError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [entry] = entries;
+    if (entry.isIntersecting) {
+      setIsInView(true);
+      observerRef.current?.disconnect();
     }
-
-    return () => observer.disconnect();
   }, []);
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-  };
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(handleIntersection, { 
+      threshold: 0.1,
+      rootMargin: '50px'
+    });
 
-  const handleError = () => {
+    if (imgRef.current) {
+      observerRef.current.observe(imgRef.current);
+    }
+
+    return () => observerRef.current?.disconnect();
+  }, [handleIntersection]);
+
+  const handleLoad = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const handleError = useCallback(() => {
     setHasError(true);
     onError?.();
-  };
+  }, [onError]);
 
   return (
     <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
       {!isLoaded && !hasError && (
         <div className="absolute inset-0 bg-slate-800/50 flex items-center justify-center">
           {placeholder ? (
-            <img src={placeholder} alt="" className="w-full h-full object-cover opacity-50" />
+            <img 
+              src={placeholder} 
+              alt="" 
+              className="w-full h-full object-cover opacity-50" 
+              loading="lazy"
+            />
           ) : (
             <Sparkles className="w-8 h-8 text-magical-purple animate-pulse" />
           )}
@@ -73,6 +82,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}
+          loading="lazy"
+          decoding="async"
           className={`w-full h-full object-cover transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}

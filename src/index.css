@@ -87,14 +87,14 @@
   }
 }
 
-/* Enhanced Mobile Optimizations */
+/* Performance optimized utilities */
 @layer utilities {
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
+    @apply py-16 md:py-20 lg:py-24;
   }
 
   .text-gradient {
@@ -104,45 +104,25 @@
 
   .card-magical {
     @apply bg-slate-900/30 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl;
-    @apply hover:bg-slate-800/40 hover:border-slate-600/50 transition-all duration-300;
+    @apply hover:bg-slate-800/40 hover:border-slate-600/50 transition-all duration-200;
   }
 
   .btn-magical {
     @apply bg-gradient-to-r from-magical-purple to-magical-blue text-white px-6 py-3 rounded-lg;
-    @apply hover:shadow-lg hover:shadow-magical-purple/25 transition-all duration-300;
+    @apply hover:shadow-lg hover:shadow-magical-purple/25 transition-all duration-200;
     @apply focus:ring-2 focus:ring-magical-purple/50 focus:outline-none;
   }
 
-  /* Enhanced Mobile Touch Targets */
+  /* Reduced animation complexity for better performance */
   .hover-lift {
-    @apply transform hover:scale-105 transition-transform duration-300;
+    @apply transform hover:scale-105 transition-transform duration-200;
   }
 
   .hover-glow-intense {
-    @apply hover:shadow-xl hover:shadow-magical-purple/30 transition-shadow duration-300;
+    @apply hover:shadow-lg hover:shadow-magical-purple/20 transition-shadow duration-200;
   }
 
-  .hover-pulse-glow {
-    @apply hover:animate-pulse-glow;
-  }
-
-  .hover-text-glow {
-    @apply hover:drop-shadow-sm transition-all duration-300;
-  }
-
-  .hover-border-glow {
-    @apply hover:border-magical-purple/70 transition-colors duration-300;
-  }
-
-  .hover-bounce {
-    @apply hover:animate-bounce;
-  }
-
-  .hover-rotate {
-    @apply hover:rotate-12 transition-transform duration-300;
-  }
-
-  /* Mobile-specific improvements */
+  /* Mobile optimizations */
   @media (max-width: 768px) {
     .section-padding {
       @apply py-12;
@@ -152,23 +132,21 @@
       @apply px-4;
     }
     
-    /* Improved touch targets for mobile */
     .btn-magical {
       @apply min-h-[44px] px-6 py-3;
     }
     
-    /* Better text sizes for mobile */
     .text-gradient {
       @apply text-3xl;
     }
     
-    /* Smoother animations on mobile */
+    /* Disable complex animations on mobile for better performance */
     .hover-lift {
-      @apply active:scale-95 transition-transform duration-200;
+      @apply active:scale-95 transition-transform duration-100;
     }
   }
 
-  /* Improve scroll behavior */
+  /* Improved scroll behavior */
   html {
     scroll-behavior: smooth;
   }
@@ -191,9 +169,41 @@
     }
   }
 
-  /* Performance optimization for background images */
+  /* Performance optimization for backgrounds */
   .bg-dark-magical {
     background-attachment: scroll;
+  }
+
+  /* Hardware acceleration for smooth animations */
+  .animate-float-enhanced {
+    animation: float 6s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .animate-twinkle-enhanced {
+    animation: twinkle 3s ease-in-out infinite;
+    will-change: opacity;
+  }
+
+  .animate-gradient-shift {
+    animation: gradient-shift 3s ease-in-out infinite;
+    background-size: 200% 200%;
+  }
+
+  /* Optimized keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 }
 
@@ -213,3 +223,33 @@
   @apply text-white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
+
+/* CSS containment for better performance */
+.contain-layout {
+  contain: layout;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+/* Optimized magical colors */
+:root {
+  --magical-purple: rgb(139, 92, 246);
+  --magical-blue: rgb(59, 130, 246);
+  --magical-cyan: rgb(34, 211, 238);
+  --magical-pink: rgb(236, 72, 153);
+}
+
+.bg-magical-purple { background-color: var(--magical-purple); }
+.text-magical-purple { color: var(--magical-purple); }
+.border-magical-purple { border-color: var(--magical-purple); }
+.bg-magical-blue { background-color: var(--magical-blue); }
+.text-magical-blue { color: var(--magical-blue); }
+.border-magical-blue { border-color: var(--magical-blue); }
+.bg-magical-cyan { background-color: var(--magical-cyan); }
+.text-magical-cyan { color: var(--magical-cyan); }
+.border-magical-cyan { border-color: var(--magical-cyan); }
+.bg-magical-pink { background-color: var(--magical-pink); }
+.text-magical-pink { color: var(--magical-pink); }
+.border-magical-pink { border-color: var(--magical-pink); }
