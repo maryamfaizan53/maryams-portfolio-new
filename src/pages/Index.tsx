@@ -10,23 +10,27 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import ContactSection from '../components/ContactSection';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEOHead';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-dark-magical relative overflow-x-hidden">
-      <MagicalParticles />
-      <Navbar />
-      <main className="relative z-10">
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ExperienceSection />
-        <TestimonialsSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <SEOHead />
+      <div className="min-h-screen bg-dark-magical relative overflow-x-hidden">
+        <MagicalParticles />
+        <Navbar />
+        <main className="relative z-10">
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <ExperienceSection />
+          <TestimonialsSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

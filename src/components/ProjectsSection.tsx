@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Sparkles, Zap, ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import LazyImage from './LazyImage';
 
 const ProjectsSection = () => {
   const [filter, setFilter] = useState('All');
@@ -111,21 +112,16 @@ const ProjectsSection = () => {
           {filteredProjects.map((project, index) => (
             <Card key={project.id} className="card-magical group overflow-hidden hover-glow-intense hover-lift">
               <div className="relative">
-                {/* Project Image */}
+                {/* Project Image with Lazy Loading */}
                 <div className="aspect-video bg-gradient-to-br from-magical-purple/20 to-magical-blue/20 rounded-lg mb-4 overflow-hidden hover-border-glow">
-                  <img 
-                    src={project.image} 
+                  <LazyImage
+                    src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      target.nextElementSibling?.classList.remove('hidden');
+                    className="group-hover:scale-105 transition-transform duration-300"
+                    onError={() => {
+                      console.log(`Failed to load image for ${project.title}`);
                     }}
                   />
-                  <div className="hidden w-full h-full bg-slate-800/50 flex items-center justify-center">
-                    <Sparkles className="w-12 h-12 text-magical-purple animate-pulse hover-bounce hover-rotate group-hover:text-magical-cyan transition-colors duration-300" />
-                  </div>
                 </div>
 
                 {/* Category Badge */}

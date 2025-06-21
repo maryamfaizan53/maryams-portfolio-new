@@ -1,45 +1,10 @@
 
-import React, { useState } from 'react';
-import { Sparkles, Zap, Mail, MessageSquare, Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import React from 'react';
+import { Sparkles, Zap, Mail, MessageSquare } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import { useToast } from '@/hooks/use-toast';
+import ContactForm from './ContactForm';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Message sent successfully! ✨",
-      description: "I'll get back to you as soon as possible.",
-    });
-
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsSubmitting(false);
-  };
-
   return (
     <section id="contact" className="section-padding bg-slate-900/20">
       <div className="container-custom">
@@ -108,90 +73,7 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="card-magical">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
-                    Name *
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="bg-slate-800/50 border-slate-600/50 text-white placeholder-slate-400 focus:border-magical-purple"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
-                    Email *
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="bg-slate-800/50 border-slate-600/50 text-white placeholder-slate-400 focus:border-magical-purple"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-slate-300 mb-2">
-                  Subject *
-                </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="bg-slate-800/50 border-slate-600/50 text-white placeholder-slate-400 focus:border-magical-purple"
-                  placeholder="Project discussion"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
-                  Message *
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  rows={6}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="bg-slate-800/50 border-slate-600/50 text-white placeholder-slate-400 focus:border-magical-purple resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="w-full btn-magical group"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center space-x-2">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Sending...</span>
-                  </span>
-                ) : (
-                  <span className="flex items-center space-x-2">
-                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    <span>Send Message</span>
-                  </span>
-                )}
-              </Button>
-            </form>
-          </Card>
+          <ContactForm />
         </div>
       </div>
     </section>
