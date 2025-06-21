@@ -14,6 +14,7 @@ import ProgressIndicator from '../components/ProgressIndicator';
 import Footer from '../components/Footer';
 import SEOHead from '../components/SEOHead';
 import Analytics from '../components/Analytics';
+import Chatbot from '../components/Chatbot';
 
 const Index = () => {
   return (
@@ -35,6 +36,7 @@ const Index = () => {
           <ContactSection />
         </main>
         <Footer />
+        <Chatbot />
       </div>
     </>
   );
